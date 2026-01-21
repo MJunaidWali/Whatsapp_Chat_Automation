@@ -1,0 +1,8 @@
+# add  below file in this 
+venv 
+.env
+__pycache__/
+*.pyc
+.DS_Store
+.idea/
+logs/
