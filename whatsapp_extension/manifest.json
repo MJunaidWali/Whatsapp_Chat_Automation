@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "WA_Traffic_Scraper",
+  "version": "1.0.1",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "pop.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://web.whatsapp.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "host_permissions": [
+    "https://web.whatsapp.com/*"
+  ]
+}

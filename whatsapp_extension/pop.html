@@ -1,0 +1,29 @@
+<main>
+  <div style="padding: 10px; width: 300px;">
+    <div id="waMessagesViewer" style="height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 5px; background: #f9f9f9;">
+      <div style="font-weight: bold; margin-bottom: 6px;">WhatsApp Messages</div>
+    </div>
+    <div style="display: flex; gap: 5px; justify-content: space-between; margin-top: 10px;">
+      <button id="copyAllButton" title="Copy Last 10">Copy Last 10</button>
+      <!-- Refresh Chat button removed -->
+      <button id="clearStorageButton" style="background: #f44336; color: white;">Clear</button>
+      <button id="exportButton" class="copy-button" style="background: #4caf50; color: white;" title="Export JSON">Export</button>
+    </div>
+<div id="aiSection" style="margin-top: 15px; border-top: 2px solid #25D366; padding-top: 10px;">
+    <button id="askAIButton" style="width: 100%; background-color: #075E54; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+        Generate AI Replies
+    </button>
+    <div style="position: relative; margin-top: 10px;">
+        <div id="aiResponseArea" style="font-size: 13px; line-height: 1.4; color: #444; background: #e7f3ff; padding: 12px; border-radius: 8px; border: 1px solid #b3d7ff; white-space: pre-line; min-height: 50px;">
+            AI suggestions will appear here...
+        </div>
+        <button id="copyAIResult" style="margin-top: 5px; width: 100%; background: #2196f3; color: white; border: none; border-radius: 4px; padding: 5px; cursor: pointer; display: none;">
+            Copy Suggestion
+        </button>
+    </div>
+</div>
+  </div>
+</main>
+<script src="wa_exporter.js"></script>
+<script src="config.js"></script>
+<script src="pop.js"></script>

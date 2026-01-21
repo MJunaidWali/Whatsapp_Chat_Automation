@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Generator</title>
+</head>
+<body>
+    <h2>PNG Icon Generator for cURL & WS Capture</h2>
+    <p>Right-click on each canvas and "Save Image As" to save the icons:</p>
+    
+    <div>
+        <h3>16x16 Icon</h3>
+        <canvas id="icon16" width="16" height="16"></canvas>
+    </div>
+    
+    <div>
+        <h3>48x48 Icon</h3>
+        <canvas id="icon48" width="48" height="48"></canvas>
+    </div>
+    
+    <div>
+        <h3>128x128 Icon</h3>
+        <canvas id="icon128" width="128" height="128"></canvas>
+    </div>
+
+    <script>
+        function drawIcon(canvas) {
+            const ctx = canvas.getContext('2d');
+            const size = canvas.width;
+            const scale = size / 128;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, size, size);
+            
+            // Scale all drawing operations
+            ctx.scale(scale, scale);
+            
+            // Background with rounded corners
+            ctx.fillStyle = '#1a73e8';
+            ctx.beginPath();
+            ctx.roundRect(0, 0, 128, 128, 20);
+            ctx.fill();
+            
+            // Translate to center area
+            ctx.translate(24, 24);
+            
+            // Signal waves
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 4;
+            ctx.lineCap = 'round';
+            
+            // Left wave
+            ctx.beginPath();
+            ctx.moveTo(40, 10);
+            ctx.quadraticCurveTo(30, 20, 40, 30);
+            ctx.stroke();
+            
+            // Right wave
+            ctx.beginPath();
+            ctx.moveTo(40, 10);
+            ctx.quadraticCurveTo(50, 20, 40, 30);
+            ctx.stroke();
+            
+            // Outer waves with transparency
+            ctx.globalAlpha = 0.7;
+            ctx.lineWidth = 3;
+            
+            ctx.beginPath();
+            ctx.moveTo(40, 5);
+            ctx.quadraticCurveTo(25, 20, 40, 35);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(40, 5);
+            ctx.quadraticCurveTo(55, 20, 40, 35);
+            ctx.stroke();
+            
+            ctx.globalAlpha = 1.0;
+            
+            // Center dot
+            ctx.fillStyle = '#fff';
+            ctx.beginPath();
+            ctx.arc(40, 20, 4, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Connector line
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(40, 24);
+            ctx.lineTo(40, 45);
+            ctx.stroke();
+            
+            // Network nodes
+            ctx.fillStyle = '#fff';
+            ctx.beginPath();
+            ctx.arc(20, 55, 5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(40, 50, 5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.beginPath();
+            ctx.arc(60, 55, 5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Connection lines
+            ctx.strokeStyle = '#fff';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(25, 55);
+            ctx.lineTo(35, 50);
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(45, 50);
+            ctx.lineTo(55, 55);
+            ctx.stroke();
+            
+            // Data packets
+            ctx.fillStyle = '#4CAF50';
+            ctx.fillRect(36, 60, 8, 8);
+            
+            ctx.globalAlpha = 0.8;
+            ctx.fillRect(16, 65, 6, 6);
+            ctx.fillRect(58, 65, 6, 6);
+        }
+        
+        // Draw icons on all canvases
+        drawIcon(document.getElementById('icon16'));
+        drawIcon(document.getElementById('icon48'));
+        drawIcon(document.getElementById('icon128'));
+        
+        // Auto-download icons
+        function downloadCanvas(canvas, filename) {
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+        
+        // Add download button
+        const downloadBtn = document.createElement('button');
+        downloadBtn.textContent = 'Download All Icons';
+        downloadBtn.style.cssText = 'margin: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer;';
+        downloadBtn.onclick = function() {
+            setTimeout(() => downloadCanvas(document.getElementById('icon16'), 'icon16.png'), 100);
+            setTimeout(() => downloadCanvas(document.getElementById('icon48'), 'icon48.png'), 300);
+            setTimeout(() => downloadCanvas(document.getElementById('icon128'), 'icon128.png'), 500);
+        };
+        document.body.appendChild(downloadBtn);
+    </script>
+</body>
+</html>
